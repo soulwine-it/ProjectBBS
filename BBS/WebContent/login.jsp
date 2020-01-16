@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Rodin</title>
+<title>Rodin login</title>
 </head>
 <body>
-	<script>
-		location.href="login.jsp";
-	</script>
+
 </body>
 </html>
