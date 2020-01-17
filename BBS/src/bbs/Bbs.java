@@ -1,10 +1,11 @@
 package bbs;
 
 public class Bbs {
-	public String getBbsID() {
+	
+	public int getBbsID() {
 		return bbsID;
 	}
-	public void setBbsID(String bbsID) {
+	public void setBbsID(int bbsID) {
 		this.bbsID = bbsID;
 	}
 	public String getBbsTitle() {
@@ -37,7 +38,7 @@ public class Bbs {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
-	private String bbsID;
+	private int bbsID;
 	private String bbsTitle;
 	private String userID;
 	private String bbsDate;
