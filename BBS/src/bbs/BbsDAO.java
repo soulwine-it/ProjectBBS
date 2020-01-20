@@ -89,6 +89,7 @@ public class BbsDAO {
 			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
 			rs = pstmt.executeQuery();
 			
+			
 			while (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
@@ -128,5 +129,60 @@ public class BbsDAO {
 				//아니라면 false
 				return false;
 	}
-
+	//글 내용을 불러오는 함수
+	public Bbs getBbs(int bbsID) {
+		//특정 게시글 번호에 모든 정보를 가져오는 쿼리문입니다.
+		String SQL = "SELECT * FROM BBS WHERE bbsID =?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  bbsID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				//글에 대한 정보를 담을 객체를 생성하고
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				return bbs;
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		//정보가 없으면 null값을 반환
+		return null;
+	}
+	
+	//글 수정 하는 함수
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //database error
+	}
+	
+	//bbsAvailable 을 0으로 바꿈으로 화면에 표시되지 않게 함
+	public int delete(int bbsID) {
+		String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate(); 
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB ERROR
+	}
 }

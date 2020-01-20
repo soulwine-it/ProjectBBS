@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>Rodin login</title>
 <style type="text/css">
 	a, a:hover{
@@ -115,6 +116,7 @@
 					%>
 				</tbody>
 			</table>
+			
 			<%
 				if(pageNumber != 1){
 			%>
