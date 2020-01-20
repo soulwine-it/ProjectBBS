@@ -92,7 +92,7 @@
 			</ol>
 			
 			<div class="carousel-inner">
-				<div class="item active">
+				<div class="item active"> <!-- active 현재 선택 -->
 					<img src="images/1.png">
 				</div>
 				<div class="item">
